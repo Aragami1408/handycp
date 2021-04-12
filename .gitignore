@@ -33,3 +33,9 @@ build/
 *.exe
 *.out
 *.app
+
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+handycp.pc
