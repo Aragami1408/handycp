@@ -6,7 +6,6 @@ include(GNUInstallDirs)
 
 add_library(${PROJECT_NAME} SHARED
     src/bstree.cpp
-    src/tstree.cpp
     src/stats.cpp
     src/linkedlist.cpp
 )
