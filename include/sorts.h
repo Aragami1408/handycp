@@ -24,17 +24,21 @@
 #include <iostream>
 #include <vector>
 #include "handycp.h"
-namespace sorts {
+namespace handycp {
     
     //MERGE SORT
-    template<typename T>
+    template<class T>
     void merge(std::vector<T>& vec, int l, int m, int r);
-    template<typename T>
+    template<class T>
     void mergesort(std::vector<T>& vec, int l, int r);
 
     //QUICK SORT
-    template<typename T>
+    template<class T>
     int partition(std::vector<T>& vec, int l, int r);
-    template<typename T>
+    template<class T>
     void quicksort(std::vector<T>& vec, int l, int r);
+
+    //INSERTION SORT
+    template<class T>
+    void insertionsort(std::vector<T>& vec, int n);
 };

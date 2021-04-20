@@ -1,8 +1,29 @@
-#include "sorts.h"
+/*
+ * handycp - Some pretty handy stuff for Competitive Programming
+ *
+ * Sort Algorithms
+ *
+ *
+ * Copyright © 2021 Aragami1408/D6E093 <vucaominh1408@gmail.com>
+
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”),
+ * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * DEALINGS IN THE SOFTWARE.
+ *
+ */
+
 #include "handycp.h"
+#include "sorts.h"
 #include <algorithm>
-template<typename T>
-void sorts::merge(std::vector<T> &vec, int l, int m, int r) {
+template<class T>
+void handycp::merge(std::vector<T> &vec, int l, int m, int r) {
     int L[m-l+1], R[r-m];
     FOR(i,0,(m-l+1))
         L[i]=vec.at(l+i);
@@ -36,8 +57,8 @@ void sorts::merge(std::vector<T> &vec, int l, int m, int r) {
     }
 }
 
-template<typename T>
-void sorts::mergesort(std::vector<T> &vec, int l, int r) {
+template<class T>
+void handycp::mergesort(std::vector<T> &vec, int l, int r) {
     if(l>=r){
         return;
     }
@@ -47,8 +68,8 @@ void sorts::mergesort(std::vector<T> &vec, int l, int r) {
     merge(vec,l,m,r);
 }
 
-template<typename T>
-int sorts::partition(std::vector<T> &vec, int l, int r) {
+template<class T>
+int handycp::partition(std::vector<T> &vec, int l, int r) {
     T pivot = vec.at(r);
     int i = l;
     for(int j=l;j<=r;i++) {
@@ -61,12 +82,26 @@ int sorts::partition(std::vector<T> &vec, int l, int r) {
     return i;
 }
 
-template<typename T>
-void sorts::quicksort(std::vector<T> &vec, int l, int r) {
+template<class T>
+void handycp::quicksort(std::vector<T> &vec, int l, int r) {
     if (l < r) {
         int p = partition(vec, l, r);
         quicksort(vec, l, p-1);
         quicksort(vec,p+1,r);
     } 
 
+}
+
+template<class T>
+void handycp::insertionsort(std::vector<T>& vec, int n) {
+    int key,j;
+    for(int i=1;i<n;i++) {
+        key=vec[i];
+        j=i-1;
+        while(j>=0 && vec[j]>key) {
+            vec[j+1] = vec[j];
+            j-=1;
+        }
+        vec[j+1]=key;
+    }
 }
