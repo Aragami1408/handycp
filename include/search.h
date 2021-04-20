@@ -24,6 +24,6 @@
 
 namespace handycp {
     template<class T>
-    int binarySearch(std::vector<T> &arr, int x);
+    int binarySearch(std::vector<T> &arr, T x);
 }
 

@@ -1,1 +1,40 @@
+/*
+ * handycp - Some pretty handy stuff for Competitive Programming
+ *
+ * Search Algorithms
+ *
+ *
+ * Copyright © 2021 Aragami1408/D6E093 <vucaominh1408@gmail.com>
+
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”),
+ * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * DEALINGS IN THE SOFTWARE.
+ *
+ */
+
 #include "search.h"
+
+template<class T>
+int handycp::binarySearch(std::vector<T> &arr, T x) {
+    int beg = 0, end = arr.size() - 1;
+    while(beg <= end) {
+        int mid = beg + (end-beg) / 2;
+        if(arr.at(mid) == x) {
+            return mid;
+        } 
+        else if (arr.at(mid) < x) {
+            beg = mid + 1;
+        }
+        else {
+            end = mid - 1;
+        }
+    }
+    return -1;
+}
