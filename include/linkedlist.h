@@ -27,7 +27,6 @@ template<class T>
 struct Node {
     T data;
     Node *next;
-
 };
 
 template<class T>

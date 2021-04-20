@@ -1,4 +1,4 @@
-#include "stats.h"
+#include "../include/stats.h"
 #include <cmath>
 #include <cstdlib>
 #define st this
