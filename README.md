@@ -4,11 +4,13 @@ A library contains `probably useful` Competitive Programming utilities (`Algorit
 Sadly, only C++ devs can consoom this. Might create future bindings later.
 
 ## What does it contains
-* Data structures
+* Data structures:
     * Binary Search Tree
     * Linked List
-    * Ternary Search Tree
     * Statistics Engine
+* Algorithms:
+    * Search Algos
+    * Sort Algos
 
 ## How to use this one exactly?
 
