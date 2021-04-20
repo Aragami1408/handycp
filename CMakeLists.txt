@@ -13,6 +13,7 @@ add_library(${PROJECT_NAME} SHARED
     src/stats.cpp
     src/linkedlist.cpp
     src/sorts.cpp
+    src/search.cpp
 )
 
 
