@@ -19,7 +19,7 @@
  *
  */
 
-#include "../include/stats.h"
+#include <stats.h>
 #include <cmath>
 #include <cstdlib>
 #define st this

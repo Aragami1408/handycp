@@ -23,7 +23,9 @@
 #include <vector>
 
 namespace handycp {
+    //BINARY SEARCH
     template<class T>
     int binarySearch(std::vector<T> &arr, T x);
+
 }
 

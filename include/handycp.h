@@ -21,10 +21,15 @@
 
 #pragma once
 
-//IMPORTS
-#include "bstree.h"
-#include "linkedlist.h"
-#include "stats.h"
+// MODULE IMPORTS
+#include <bstree.h>
+#include <linkedlist.h>
+#include <stats.h>
+#include <radixmap.h>
+#include <sorts.h>
+#include <sorts.h>
+
+// BUILDIN IMPORTS
 #include <ios>
 #include <utility>
 

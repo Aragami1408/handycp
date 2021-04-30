@@ -19,8 +19,8 @@
  *
  */
 
-#include "handycp.h"
-#include "sorts.h"
+#include <handycp.h>
+#include <sorts.h>
 #include <algorithm>
 template<class T>
 void handycp::merge(std::vector<T> &vec, int l, int m, int r) {

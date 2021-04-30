@@ -50,5 +50,5 @@ namespace handycp {
         bool Contains(T val, std::unique_ptr<TreeNode>& node) const; 
         void Remove(T val, std::unique_ptr<TreeNode>& node); 
         std::unique_ptr<TreeNode>& FindMin(std::unique_ptr<TreeNode>& node);
-};
+    };
 };

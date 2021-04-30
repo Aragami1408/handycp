@@ -6,14 +6,24 @@ project(handycp
     LANGUAGES CXX
 )
 
+set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_CXX_FLAGS "{CMAKE_CXX_FLAGS} -Wall -Wpedantic -Wextra")
+
+option(USE_DEBUG "Enter debug mode" OFF)
+if(USE_DEBUG)
+    add_definitions(-DDEBUG)
+endif()
+
 include(GNUInstallDirs)
 
 add_library(${PROJECT_NAME} SHARED
     src/bstree.cpp
-    src/stats.cpp
     src/linkedlist.cpp
-    src/sorts.cpp
+    src/radixmap.cpp
     src/search.cpp
+    src/sorts.cpp
+    src/trie.cpp
 )
 
 
@@ -33,6 +43,7 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} 
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
+
 install(FILES ${CMAKE_BINARY_DIR}/mylib.pc 
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig
 )

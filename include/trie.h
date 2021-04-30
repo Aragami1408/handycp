@@ -19,28 +19,26 @@
  *
  */
 #pragma once
-#include <iostream>
 #include <string>
+#include <iostream>
 #define ALPHA_SIZE 26
 
-struct TrieNode {
-    TrieNode *children[ALPHA_SIZE];
-    bool end_of_word;
-    char letter;
-    TrieNode() {
-        end_of_word = false;
-        for(int i = 0; i < ALPHA_SIZE; i++) {
-            children[i] = nullptr;
-        }
-        letter = '\0';
-    }
+namespace handycp {
+
+    struct TrieNode {
+        char data;
+        TrieNode *children[ALPHA_SIZE];
+        bool is_leaf;
+
+        TrieNode(char data);
+        ~TrieNode();
+        void insertNode(std::string word);
+        bool searchNode(std::string word);
+        void traverseNode(TrieNode *root);
+        bool isLeaf(std::string word);
+        void deleteNode(std::string word);
+        std::string longestPrefix(std::string word);
+    };
 };
 
-class Trie {
-public:
-    void insert(std::string str);
-    TrieNode *search(std::string str);
-    void printLexical(TrieNode *current, std::string prefix, std::string suffix);
-private:
-    TrieNode root;
-};
+

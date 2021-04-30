@@ -1,7 +1,7 @@
 /*
  * handycp - Some pretty handy stuff for Competitive Programming
  *
- * Linked List
+ * Singly Linked List
  *
  *
  * Copyright © 2021 Aragami1408/D6E093 <vucaominh1408@gmail.com>
@@ -23,33 +23,39 @@
 #pragma once
 
 #include <iostream>
-template<class T>
-struct Node {
-    T data;
-    Node *next;
+
+namespace handycp {
+    
+    template<class T>
+    struct Node {
+        T data;
+        Node *next;
+    };
+
+    template<class T>
+    void push(Node<T> **head_ref, T new_data);
+    template<class T>
+    void insertAfter(Node<T> *prev_node, T new_data);
+    template<class T>
+    void append(Node<T> **head_ref, T new_data);
+    template<class T>
+    void traverse(Node<T> *node);
+    template<class T>
+    void deleteNode(Node<T> **head_ref, T key);
+    template<class T>
+    void deleteAt(Node<T> **head_ref, int pos);
+    template<class T>
+    void deleteList(Node<T> **head_ref);
+    template<class T>
+    int getCount(Node<T> *head);
+    template<class T>
+    bool search(Node<T> *head, T x);
+    template<class T>
+    T GetNth(Node<T> *head, int index);
+    template<class T>
+    T GetNthFromLast(Node<T> *head);
+    template<class T>
+    int count(Node<T> *head, int search_for);
+    
 };
 
-template<class T>
-void push(Node<T> **head_ref, T new_data);
-template<class T>
-void insertAfter(Node<T> *prev_node, T new_data);
-template<class T>
-void append(Node<T> **head_ref, T new_data);
-template<class T>
-void traverse(Node<T> *node);
-template<class T>
-void deleteNode(Node<T> **head_ref, T key);
-template<class T>
-void deleteAt(Node<T> **head_ref, int pos);
-template<class T>
-void deleteList(Node<T> **head_ref);
-template<class T>
-int getCount(Node<T> *head);
-template<class T>
-bool search(Node<T> *head, T x);
-template<class T>
-T GetNth(Node<T> *head, int index);
-template<class T>
-T GetNthFromLast(Node<T> *head);
-template<class T>
-int count(Node<T> *head, int search_for);
