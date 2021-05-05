@@ -26,7 +26,7 @@ handycp::DoublyLinkedList<T>::DoublyLinkedList() {
 }
 
 template<typename T>
-handycp::DoublyLinkedList<T>::~DoublyLinkedList<T>() {
+handycp::DoublyLinkedList<T>::~DoublyLinkedList() {
     this->clear();
     this->destroy();
 }

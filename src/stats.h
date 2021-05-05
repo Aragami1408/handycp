@@ -46,5 +46,4 @@ private:
     unsigned long n;
     double min;
     double max;
-
 };
