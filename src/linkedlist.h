@@ -55,7 +55,6 @@ namespace handycp {
     template<class T>
     T GetNthFromLast(Node<T> *head);
     template<class T>
-    int count(Node<T> *head, int search_for);
-    
+    int count(Node<T> *head, int search_for); 
 };
 

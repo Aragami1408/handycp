@@ -18,8 +18,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-
-#include <bstree.h>
+#include "bstree.h"
 
 template <typename T>
 void handycp::BSTree<T>::Print() const {

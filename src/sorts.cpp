@@ -19,15 +19,17 @@
  *
  */
 
-#include <handycp.h>
-#include <sorts.h>
+#include "sorts.h"
 #include <algorithm>
+
+
 template<class T>
 void handycp::merge(std::vector<T> &vec, int l, int m, int r) {
     int L[m-l+1], R[r-m];
-    FOR(i,0,(m-l+1))
+    
+    for(int i = 0;i<(m-l+1);i++)
         L[i]=vec.at(l+i);
-    FOR(j,0,(r-m))
+    for(int j = 0;j<(r-m);j++)
         R[j]=vec.at(m+1+j);
 
     int i=0,j=0,k=l;

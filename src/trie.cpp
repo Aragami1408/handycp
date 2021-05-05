@@ -1,4 +1,4 @@
-#include <trie.h>
+#include "trie.h"
 
 handycp::TrieNode::TrieNode(char data) {
     for(int i=0;i<ALPHA_SIZE;i++) {
@@ -23,7 +23,7 @@ handycp::TrieNode::~TrieNode() {
 void handycp::TrieNode::insertNode(std::string word) {
     TrieNode *temp = this;
 
-    for (int i=0; i < word.size(); i++) {
+    for (int i=0; i < word.length(); i++) {
         int idx = (int) word[i] - 'a';
         if (temp->children[idx] == NULL) {
             temp->children[idx] = new TrieNode(word[i]);
@@ -35,7 +35,7 @@ void handycp::TrieNode::insertNode(std::string word) {
 
 bool handycp::TrieNode::searchNode(std::string word) {
     TrieNode *temp = this;
-    for(int i=0; i < word.size(); i++) {
+    for(int i=0; i < word.length(); i++) {
         int pos = word[i] - 'a';
         if(temp->children[pos] == nullptr) {
             return false;

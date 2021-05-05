@@ -1,7 +1,7 @@
 /*
  * handycp - Some pretty handy stuff for Competitive Programming
  *
- * Statistics Engine
+ * Binary Search Tree
  *
  *
  * Copyright © 2021 Aragami1408/D6E093 <vucaominh1408@gmail.com>
@@ -19,52 +19,35 @@
  *
  */
 
-#include "stats.h"
-#include <cmath>
-#include <cstdlib>
+#pragma once
 #include <iostream>
-#define st this
+#include <string>
+#include <memory>
 
-double Stats::mean() {
-    return st->sum / st->n;
-}
+namespace handycp {
+    template<typename T>
+    class BSTree {
+    public:
+        BSTree(): root(nullptr) {}
 
-double Stats::stddev() {
-    return sqrt((st->sumsq - (st->sum * st->sum / st->n)) - (st->n - 1));
-}
+        void Print() const;
+        void Insert(T val);
+        bool Contains(T val) const;
+        void Remove(T val);
+    private:
+        struct TreeNode {
+            T data;
+            std::unique_ptr<TreeNode> left;
+            std::unique_ptr<TreeNode> right;
 
-void Stats::sample(double s) {
-    st->sum += s;
-    st->sumsq += s*s;
+            TreeNode(T data): data(data), left(nullptr), right(nullptr) {}
+        };
 
-    if(st->n == 0) {
-        st->min = s;
-        st->max = s;
-    }
-    else {
-        if(st->min > s) st->min = s;
-        if(st->max < s) st->max = s;
-    }
-
-    st->n += 1;
-}
-
-void Stats::dump() {
-    std::cout 
-        << "sum: " 
-        << st->sum 
-        << ", sumsq: " 
-        << st->sumsq 
-        << ", n: " 
-        << st->n 
-        << ", min: " 
-        << st-> min
-        << ", max: "
-        << st->max
-        << ", mean: "
-        << st->mean()
-        << ", stddev: "
-        << st->stddev() << std::endl;
-}
-
-
+        std::unique_ptr<TreeNode> root;
+        std::string SubTreeAsString(const std::unique_ptr<TreeNode> & node) const;
+        void Insert(T val, std::unique_ptr<TreeNode>& node);      
+        bool Contains(T val, std::unique_ptr<TreeNode>& node) const; 
+        void Remove(T val, std::unique_ptr<TreeNode>& node); 
+        std::unique_ptr<TreeNode>& FindMin(std::unique_ptr<TreeNode>& node);
+    };
+};

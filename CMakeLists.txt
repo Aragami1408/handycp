@@ -2,46 +2,35 @@ cmake_minimum_required(VERSION 3.9)
 
 project(handycp)
 
-set(CMAKE_CXX_STANDARD 11)
-
-set(CMAKE_CXX_FLAGS "{CMAKE_CXX_FLAGS} -Wall -Wpedantic -Wextra -std=c++11 -O3")
-
-set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
-
-option(USE_DEBUG "Enter debug mode" OFF)
-if(USE_DEBUG)
-    add_definitions(-DDEBUG)
-endif()
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -std=c++14")
 
 include(GNUInstallDirs)
 
 add_library(${PROJECT_NAME} SHARED
     src/bstree.cpp
+    src/doublylinkedlist.cpp
     src/linkedlist.cpp
     src/radixmap.cpp
     src/search.cpp
     src/sorts.cpp
+    src/stats.cpp
     src/trie.cpp
 )
 
-
 set_target_properties(${PROJECT_NAME} 
-    PROPERTIES VERSION 
-    ${PROJECT_VERSION} 
+    PROPERTIES PUBLIC_HEADER
+    VERSION  ${PROJECT_VERSION} 
     SOVERSION 1 
-    PUBLIC_HEADER 
-    include/handycp.h
-)
+    PUBLIC_HEADER include/handycp.h)
 
 configure_file(handycp.pc.in handycp.pc @ONLY)
-
-target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 install(TARGETS ${PROJECT_NAME} 
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} 
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-install(FILES ${CMAKE_BINARY_DIR}/mylib.pc 
+install(FILES ${CMAKE_BINARY_DIR}/handycp.pc 
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig
 )

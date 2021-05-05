@@ -19,7 +19,7 @@
  *
  */
 
-#include <linkedlist.h>
+#include "linkedlist.h"
 
 template<class T>
 void handycp::push(Node<T> **head_ref, T new_data) {
@@ -177,8 +177,7 @@ T handycp::GetNth(Node<T> *head, int index) {
         count++;
         current = current->next;
     }
-
-    assert(0);
+    return nullptr;
 }
 
 template<class T>
