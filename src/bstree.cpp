@@ -20,8 +20,10 @@
  */
 #include "bstree.h"
 
+using namespace handycp;
+
 template <typename T>
-void handycp::BSTree<T>::Print() const {
+void handycp::BSTree<T>::traverse() const {
     if(this->root == nullptr){
         std::cout << "{}" << std::endl;
     } else{
@@ -38,7 +40,7 @@ std::string handycp::BSTree<T>::SubTreeAsString(const std::unique_ptr<TreeNode>&
 }
 
 template <typename T>
-void handycp::BSTree<T>::Insert(T val) {
+void handycp::BSTree<T>::insert(T val) {
     this->Insert(val, this->root);
 }
 
@@ -64,7 +66,7 @@ void handycp::BSTree<T>::Insert(T val, std::unique_ptr<TreeNode>& node) {
 }
 
 template <typename T>
-bool handycp::BSTree<T>::Contains(T val) const {
+bool handycp::BSTree<T>::contains(T val) const {
     return Contains(val, this->root);
 }
 
@@ -82,7 +84,7 @@ bool handycp::BSTree<T>::Contains(T val, std::unique_ptr<TreeNode>& node) const 
 }
 
 template <typename T>
-void handycp::BSTree<T>::Remove(T val) {
+void handycp::BSTree<T>::remove(T val) {
     this->Remove(val, this->root);
 }
 

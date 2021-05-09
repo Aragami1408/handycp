@@ -30,10 +30,10 @@ namespace handycp {
     public:
         BSTree(): root(nullptr) {}
 
-        void Print() const;
-        void Insert(T val);
-        bool Contains(T val) const;
-        void Remove(T val);
+        void traverse() const;
+        void insert(T val);
+        bool contains(T val) const;
+        void remove(T val);
     private:
         struct TreeNode {
             T data;
