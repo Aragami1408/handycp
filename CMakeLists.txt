@@ -8,23 +8,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(GNUInstallDirs)
 
-# SRC
-set(BINARY ${CMAKE_PROJECT_NAME})
-file(GLOB_RECURSE SOURCES LIST_DIRECTORIES true src/*.h src/*.cpp)
-set(SOURCES ${SOURCES})
-add_library(${BINARY} SHARED
-    ${SOURCES}
-)
+# INTERNAL
+add_subdirectory(src)
+add_subdirectory(test)
 
-# TESTS (NOT IMPLEMENTED YET)
-#set(BINARY ${CMAKE_PROJECT_NAME}_test)
-#file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false tests/*.h tests/*.cpp)
-#set(SOURCES ${TEST_SOURCES})
-#add_executable(${BINARY} ${TEST_SOURCES})
-#add_test(NAME ${BINARY} COMMAND ${BINARY})
-#target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib gtest)
+#EXTERNAL
+add_subdirectory(lib/googletest)
 
-# INSTALLATION
 set_target_properties(${PROJECT_NAME} 
     PROPERTIES PUBLIC_HEADER
     VERSION  ${PROJECT_VERSION} 
