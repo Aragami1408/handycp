@@ -2,15 +2,16 @@
 #include "radixmap.h"
 #include <stdint.h>
 
+using namespace handycp;
 
-handycp::RadixMap::RadixMap(size_t max) {
+RadixMap::RadixMap(size_t max) {
     this->contents = new RMElement;
     this->temp = new RMElement;
     this->max = max;
     this->end = 0;
 }
 
-handycp::RadixMap::~RadixMap() {
+RadixMap::~RadixMap() {
     delete this->contents;
     delete this->temp;
     delete this;
@@ -43,7 +44,7 @@ static inline void radix_sort(short offset, std::uint16_t max, std::uint64_t *so
     }
 }
 
-void handycp::RadixMap::sort() {
+void RadixMap::sort() {
     std::uint64_t *source = &this->contents[0].raw;
     std::uint64_t *temp = &this->temp[0].raw;
 
@@ -53,7 +54,7 @@ void handycp::RadixMap::sort() {
     radix_sort(3, this->end, temp, source);
 }
 
-handycp::RMElement* handycp::RadixMap::find(std::uint32_t to_find) {
+RMElement* handycp::RadixMap::find(std::uint32_t to_find) {
     int low = 0;
     int high = this->end - 1;
     handycp::RMElement *data = this->contents;
@@ -75,7 +76,7 @@ handycp::RMElement* handycp::RadixMap::find(std::uint32_t to_find) {
     return nullptr;
 }
 
-bool handycp::RadixMap::add(std::uint32_t key, std::uint32_t value) {
+bool RadixMap::add(std::uint32_t key, std::uint32_t value) {
     handycp::RMElement element = {.data = {.key = key, .value = value}};
     if(!(key < UINT32_MAX) || !(this->end + 1 < this->max)) {
         goto error;
@@ -90,7 +91,7 @@ error:
     return false;
 }
 
-bool handycp::RadixMap::del(RMElement *el) {
+bool RadixMap::del(RMElement *el) {
     if(!(this->end > 0) || !(el != nullptr)) {
         goto error;
     }

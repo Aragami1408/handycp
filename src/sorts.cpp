@@ -22,9 +22,9 @@
 #include "sorts.h"
 #include <algorithm>
 
-
+using namespace handycp;
 template<class T>
-void handycp::merge(std::vector<T> &vec, int l, int m, int r) {
+void merge(std::vector<T> &vec, int l, int m, int r) {
     int L[m-l+1], R[r-m];
     
     for(int i = 0;i<(m-l+1);i++)
@@ -60,7 +60,7 @@ void handycp::merge(std::vector<T> &vec, int l, int m, int r) {
 }
 
 template<class T>
-void handycp::mergesort(std::vector<T> &vec, int l, int r) {
+void mergesort(std::vector<T> &vec, int l, int r) {
     if(l>=r){
         return;
     }
@@ -71,7 +71,7 @@ void handycp::mergesort(std::vector<T> &vec, int l, int r) {
 }
 
 template<class T>
-int handycp::partition(std::vector<T> &vec, int l, int r) {
+int partition(std::vector<T> &vec, int l, int r) {
     T pivot = vec.at(r);
     int i = l;
     for(int j=l;j<=r;i++) {
@@ -85,7 +85,7 @@ int handycp::partition(std::vector<T> &vec, int l, int r) {
 }
 
 template<class T>
-void handycp::quicksort(std::vector<T> &vec, int l, int r) {
+void quicksort(std::vector<T> &vec, int l, int r) {
     if (l < r) {
         int p = partition(vec, l, r);
         quicksort(vec, l, p-1);
@@ -95,7 +95,7 @@ void handycp::quicksort(std::vector<T> &vec, int l, int r) {
 }
 
 template<class T>
-void handycp::insertionsort(std::vector<T>& vec, int n) {
+void insertionsort(std::vector<T>& vec, int n) {
     int key,j;
     for(int i=1;i<n;i++) {
         key=vec[i];

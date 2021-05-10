@@ -21,8 +21,10 @@
 
 #include "linkedlist.h"
 
+using namespace handycp;
+
 template<class T>
-void handycp::push(Node<T> **head_ref, T new_data) {
+void push(Node<T> **head_ref, T new_data) {
     Node<T>* new_node = new Node<T>();
  
     new_node->data = new_data;
@@ -33,7 +35,7 @@ void handycp::push(Node<T> **head_ref, T new_data) {
 }
 
 template<class T>
-void handycp::insertAfter(Node<T> *prev_node, T new_data) {
+void insertAfter(Node<T> *prev_node, T new_data) {
     if(prev_node == nullptr) {
         std::cout<<"the given previous node cannot be nullptr";
         return;
@@ -46,7 +48,7 @@ void handycp::insertAfter(Node<T> *prev_node, T new_data) {
 }
 
 template<class T>
-void handycp::append(Node<T> **head_ref, T new_data) {
+void append(Node<T> **head_ref, T new_data) {
     Node<T> *new_node = new Node<T>();
 
     Node<T> *last = *head_ref;
@@ -69,7 +71,7 @@ void handycp::append(Node<T> **head_ref, T new_data) {
 }
 
 template<class T>
-void handycp::traverse(Node<T> *node) {
+void traverse(Node<T> *node) {
     while(node != nullptr) {
         std::cout<<" "<<node->data;
         node = node->next;
@@ -77,7 +79,7 @@ void handycp::traverse(Node<T> *node) {
 }
 
 template<class T>
-void handycp::deleteNode(Node<T> **head_ref, T key) {
+void deleteNode(Node<T> **head_ref, T key) {
     Node<T> *temp = *head_ref;
     Node<T> *prev = nullptr;
 
@@ -103,7 +105,7 @@ void handycp::deleteNode(Node<T> **head_ref, T key) {
 }
 
 template<class T>
-void handycp::deleteAt(Node<T> **head_ref, int pos) {
+void deleteAt(Node<T> **head_ref, int pos) {
     if(*head_ref == nullptr) {
         return;
     }
@@ -130,7 +132,7 @@ void handycp::deleteAt(Node<T> **head_ref, int pos) {
 }
 
 template<class T>
-void handycp::deleteList(Node<T> **head_ref) {
+void deleteList(Node<T> **head_ref) {
     Node<T> *current = *head_ref;
     Node<T> *next = nullptr;
 
@@ -144,7 +146,7 @@ void handycp::deleteList(Node<T> **head_ref) {
 }
 
 template<class T>
-int handycp::getCount(Node<T> *head) {
+int getCount(Node<T> *head) {
     int count = 0;
     Node<T> *current = head;
     while(current != nullptr) {
@@ -155,7 +157,7 @@ int handycp::getCount(Node<T> *head) {
 }
 
 template<class T>
-bool handycp::search(Node<T> *head, T x) {
+bool search(Node<T> *head, T x) {
     Node<T> *current = head;
     while(current != nullptr) {
         if(current->key == x) {
@@ -167,7 +169,7 @@ bool handycp::search(Node<T> *head, T x) {
 }
 
 template<class T>
-T handycp::GetNth(Node<T> *head, int index) {
+T GetNth(Node<T> *head, int index) {
     Node<T> *current = head;
     int count = 0;
     while(current != nullptr) {
@@ -181,7 +183,7 @@ T handycp::GetNth(Node<T> *head, int index) {
 }
 
 template<class T>
-T handycp::GetNthFromLast(Node<T> *head) {
+T GetNthFromLast(Node<T> *head) {
     Node<T> *slow_ptr = head;
     Node<T> *fast_ptr = head;
 
@@ -195,7 +197,7 @@ T handycp::GetNthFromLast(Node<T> *head) {
 }
 
 template<class T>
-int handycp::count(Node<T> *head, int search_for) {
+int count(Node<T> *head, int search_for) {
     Node<T> *current = head;
     int count = 0;
     while(current != nullptr) {

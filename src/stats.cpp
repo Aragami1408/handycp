@@ -25,6 +25,7 @@
 #include <iostream>
 #define st this
 
+using namespace handycp;
 double Stats::mean() {
     return st->sum / st->n;
 }

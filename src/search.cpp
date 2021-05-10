@@ -21,8 +21,10 @@
 
 #include "search.h"
 
+using namespace handycp;
+
 template<class T>
-int handycp::binarySearch(std::vector<T> &arr, T x) {
+int binarySearch(std::vector<T> &arr, T x) {
     int beg = 0, end = arr.size() - 1;
     while(beg <= end) {
         int mid = beg + (end-beg) / 2;
