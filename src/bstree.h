@@ -14,7 +14,7 @@
  *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  *
  */
@@ -23,7 +23,6 @@
 #include <iostream>
 #include <string>
 #include <memory>
-
 namespace handycp {
     template<typename T>
     class BSTree {
@@ -45,9 +44,9 @@ namespace handycp {
 
         std::unique_ptr<TreeNode> root;
         std::string SubTreeAsString(const std::unique_ptr<TreeNode> & node) const;
-        void Insert(T val, std::unique_ptr<TreeNode>& node);      
-        bool Contains(T val, std::unique_ptr<TreeNode>& node) const; 
-        void Remove(T val, std::unique_ptr<TreeNode>& node); 
+        void Insert(T val, std::unique_ptr<TreeNode>& node);
+        bool Contains(T val, std::unique_ptr<TreeNode>& node) const;
+        void Remove(T val, std::unique_ptr<TreeNode>& node);
         std::unique_ptr<TreeNode>& FindMin(std::unique_ptr<TreeNode>& node);
     };
 };
