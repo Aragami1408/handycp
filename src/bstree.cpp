@@ -18,6 +18,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 #include "bstree.h"
 
 using namespace handycp;
@@ -48,18 +49,13 @@ template <typename T>
 void handycp::BSTree<T>::Insert(T val, std::unique_ptr<TreeNode>& node) {
 
     if(node == nullptr){
-        // Case: node is a nullptr
-        // Make a new TreeNode for it to point to
         node = std::make_unique<TreeNode>(val);
     } else{
         if(val < node->data){
-            // Case: val is < node's data
             this->Insert(val, node->left);
         } else if(val > node->data){
-            // Case: val is > node's data
             this->Insert(val, node->right);
         } else{
-            // Case: val is equal to node's data
             std::cout << "Warning: Value already exists, so nothing will be done." << std::endl;
         }
     }
@@ -92,42 +88,24 @@ void handycp::BSTree<T>::remove(T val) {
 template <typename T>
 void handycp::BSTree<T>::Remove(T val, std::unique_ptr<TreeNode>& node) {
     if(node == nullptr){
-        // Case: nullptr
-
         std::cout << "val not found in tree" << std::endl;
 
     } else if(val == node->data){
-        // Found value
-
         if(node->left == nullptr && node->right == nullptr){
-            // Case: node is a leaf
-
             node = nullptr;
-
         } else if(node->left != nullptr && node->right == nullptr){
-            // Case: node has a left subtree (but not right)
-            // Point node's parent at node's left subtree
-
             node = std::move(node->left);
-
         } else if(node->left == nullptr && node->right != nullptr){
-            // Case: node has a right subtree (but not left)
-
             node = std::move(node->right);
-
         } else{
-            // Case: node has left and right subtrees
-
-            std::unique_ptr<TreeNode>& minNode = this->FindMin(node->right); // returns a reference to the actual pointer in the tree
+            std::unique_ptr<TreeNode>& minNode = this->FindMin(node->right);
             node->data = minNode->data;
             this->Remove(minNode->data, minNode);
         }
 
     } else if(val < node->data){
-        // Case: remove val from this node's left subtree
         this->Remove(val, node->left);
     } else{
-        // Case: remove val from this node's right subtree
         this->Remove(val, node->right);
     }
 }
