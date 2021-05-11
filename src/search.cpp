@@ -20,6 +20,7 @@
  */
 
 #include "search.h"
+#include <cstdlib>
 
 using namespace handycp;
 
@@ -40,4 +41,3 @@ int binarySearch(std::vector<T> &arr, T x) {
     }
     return -1;
 }
-
