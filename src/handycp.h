@@ -24,7 +24,9 @@
 // MODULE IMPORTS
 #include "bstree.h"
 #include "linkedlist.h"
+#include "radixmap.h"
 #include "stats.h"
 #include "radixmap.h"
 #include "sorts.h"
-#include "sorts.h"
+#include "search.h"
+#include "trie.h"
