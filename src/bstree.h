@@ -19,34 +19,32 @@
  *
  */
 
-#pragma once
-#include <iostream>
-#include <string>
-#include <memory>
-namespace handycp {
-    template<typename T>
-    class BSTree {
-    public:
-        BSTree(): root(nullptr) {}
+#ifndef BSTREE_H
+#define BSTREE_H
 
-        void traverse() const;
-        void insert(T val);
-        bool contains(T val) const;
-        void remove(T val);
-    private:
-        struct TreeNode {
-            T data;
-            std::unique_ptr<TreeNode> left;
-            std::unique_ptr<TreeNode> right;
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-            TreeNode(T data): data(data), left(nullptr), right(nullptr) {}
-        };
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
-        std::unique_ptr<TreeNode> root;
-        std::string SubTreeAsString(const std::unique_ptr<TreeNode> & node) const;
-        void Insert(T val, std::unique_ptr<TreeNode>& node);
-        bool Contains(T val, std::unique_ptr<TreeNode>& node) const;
-        void Remove(T val, std::unique_ptr<TreeNode>& node);
-        std::unique_ptr<TreeNode>& FindMin(std::unique_ptr<TreeNode>& node);
-    };
-};
+
+typedef int (*BSTree_compare) (void *a, void *b);
+
+typedef struct BSTreeNode {
+    void *key;
+    void *data;
+
+    struct BSTreeNode *left;
+    struct BSTreeNode *right;
+    struct BSTreeNode *parent;
+} BSTreeNode;
+
+
+
+#ifdef __cplusplus
+}
+#endif
+#endif
