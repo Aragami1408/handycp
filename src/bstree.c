@@ -10,7 +10,7 @@ static int default_compare(void *a, void *b)  {
 BSTree *BSTree_create(BSTree_compare compare)
 {
     BSTree *map = (BSTree *) calloc(1, sizeof(BSTree));
-    check_mem(map);
+    CHECK_MEM(map, error);
 
     map->compare = compare == NULL ? default_compare : compare;
 
@@ -40,8 +40,8 @@ void BSTree_destroy(BSTree * map)
 static inline BSTreeNode *BSTreeNode_create(BSTreeNode * parent,
         void *key, void *data)
 {
-    BSTreeNode *node = (BSTree *) calloc(1, sizeof(BSTreeNode));
-    check_mem(node);
+    BSTreeNode *node = (BSTreeNode *) calloc(1, sizeof(BSTreeNode));
+    CHECK_MEM(node, error);
 
     node->key = key;
     node->data = data;
@@ -77,7 +77,7 @@ int BSTree_set(BSTree * map, void *key, void *data)
     if (map->root == NULL) {
         // first so just make it and get out
         map->root = BSTreeNode_create(NULL, key, data);
-        check_mem(map->root);
+        CHECK_MEM(map->root, error);
     } else {
         BSTree_setnode(map, map->root, key, data);
     }
