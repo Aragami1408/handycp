@@ -22,10 +22,6 @@
 #ifndef BSTREE_H
 #define BSTREE_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -42,9 +38,22 @@ typedef struct BSTreeNode {
     struct BSTreeNode *parent;
 } BSTreeNode;
 
+typedef struct BSTree {
+    int count;
+    BSTree_compare compare;
+    BSTreeNode *root;
+} BSTree;
 
+typedef int (*BSTree_traverse_cb) (BSTreeNode *node);
 
-#ifdef __cplusplus
-}
-#endif
+BSTree *BSTree_create(BSTree_compare compare);
+void BSTree_destroy(BSTree * map);
+
+int BSTree_set(BSTree * map, void *key, void *data);
+void *BSTree_get(BSTree * map, void *key);
+
+int BSTree_traverse(BSTree * map, BSTree_traverse_cb traverse_cb);
+
+void *BSTree_delete(BSTree * map, void *key);
+
 #endif
