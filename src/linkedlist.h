@@ -1,7 +1,7 @@
 /*
  * handycp - Some pretty handy stuff for Competitive Programming
  *
- * Singly Linked List
+ * Doubly Linked List
  *
  *
  * Copyright © 2021 Aragami1408/D6E093 <vucaominh1408@gmail.com>
@@ -19,53 +19,44 @@
  *
  */
 
+#ifndef LIST_H
+#define LIST_H
 
-#pragma once
+#include <stdlib.h>
 
-#include <iostream>
+typedef struct ListNode {
+    struct ListNode *next;
+    struct ListNode *prev;
+    void *value;
+} ListNode;
 
-namespace handycp {
-    
-    template<class T>
-    struct Node {
-        T data;
-        Node *next;
-    };
+typedef struct List {
+    int count;
+    ListNode *first;
+    ListNode *last;
+} List;
 
-    template<class T>
-    void push(Node<T> **head_ref, T new_data);
+List *List_create();
+void List_destroy(List *list);
+void List_clear(List *list);
+void List_clear_destroy(List *list);
 
-    template<class T>
-    void insertAfter(Node<T> *prev_node, T new_data);
+#define List_count(A) ((A)->count)
+#define List_first(A) ((A)->first != NULL ? (A)->first->value : NULL)
+#define List_last(A) ((A)->last != NULL ? (A)->last->value : NULL)
 
-    template<class T>
-    void append(Node<T> **head_ref, T new_data);
+void List_push(List *list, void *value);
+void *List_pop(List *list);
 
-    template<class T>
-    void traverse(Node<T> *node);
+void List_unshift(List *list, void *value);
+void *List_shift(List *list);
 
-    template<class T>
-    void deleteNode(Node<T> **head_ref, T key);
+void *List_remove(List *list, ListNode *node);
 
-    template<class T>
-    void deleteAt(Node<T> **head_ref, int pos);
+#define LIST_FOREACH(L, S, M, V) \
+    ListNode *_node = NULL;\
+    ListNode *V = NULL;\
+    for (V = _node = L->S; _node != NULL; V = _node = _node->M)
 
-    template<class T>
-    void deleteList(Node<T> **head_ref);
 
-    template<class T>
-    int getCount(Node<T> *head);
-
-    template<class T>
-    bool search(Node<T> *head, T x);
-
-    template<class T>
-    T GetNth(Node<T> *head, int index);
-
-    template<class T>
-    T GetNthFromLast(Node<T> *head);
-
-    template<class T>
-    int count(Node<T> *head, int search_for); 
-};
-
+#endif
