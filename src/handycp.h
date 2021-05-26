@@ -1,7 +1,7 @@
 /*
  * handycp - Some pretty handy stuff for Competitive Programming
  *
- * Handycp global lib
+ * HandyCP Global Header
  *
  *
  * Copyright © 2021 Aragami1408/D6E093 <vucaominh1408@gmail.com>
