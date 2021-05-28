@@ -4,12 +4,13 @@ project(handycp)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED TRUE)
+set(CMAKE_C_FLAGS "-Wall -Wno-error -g -std=c++11 -fno-omit-frame-pointer -fsanitize=address")
 
 include(GNUInstallDirs)
 
 # INTERNAL
 add_subdirectory(src)
-add_subdirectory(test)
+#add_subdirectory(test)
 
 #EXTERNAL
 add_subdirectory(lib/googletest)
@@ -24,8 +25,7 @@ configure_file(handycp.pc.in handycp.pc @ONLY)
 
 install(TARGETS ${PROJECT_NAME} 
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} 
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 install(FILES ${CMAKE_BINARY_DIR}/handycp.pc 
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig
