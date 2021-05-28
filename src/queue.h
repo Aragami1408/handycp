@@ -6,11 +6,21 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "dbg.h"
 
 typedef struct Queue {
-  size_t capacity, size;
-  void **data;
-  size_t head, tail;
+    size_t capacity, q_size;
+    void **data;
+    size_t head, tail;
+
+    void (*free)(struct Queue *queue);
+
+    void *(*dequeue)(struct Queue *queue);
+    void (*enqueue)(struct Queue *queue, void *item);
+
+    bool (*is_empty)(const struct Queue *queue);
+    void (*iterate)(const struct Queue *queue, void (*fn)(void *));
+    size_t (*size)(const struct Queue *queue);
 } Queue;
 
 void Queue_free(Queue *queue);
