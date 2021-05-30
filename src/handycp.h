@@ -22,3 +22,13 @@
 #pragma once
 
 // MODULE IMPORTS
+#include "bstree.h"
+#include "bstrlib.h"
+#include "darray.h"
+#include "dbg.h"
+#include "hashmap.h"
+#include "linkedlist.h"
+#include "queue.h"
+#include "radixmap.h"
+#include "sarray.h"
+#include "tstree.h"
