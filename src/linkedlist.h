@@ -23,40 +23,85 @@
 #define LIST_H
 
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct ListNode {
-    struct ListNode *next;
-    struct ListNode *prev;
-    void *value;
+    struct ListNode *next;      // next node
+    struct ListNode *prev;      // previous node
+    void *value;                // generic value
+    size_t size;                // generic value's size
 } ListNode;
 
 typedef struct List {
-    int count;
-    ListNode *first;
-    ListNode *last;
+    size_t num;                 // number of elements
+    size_t max;                 // max num of elems, set max to 0 for no limitation
+    size_t size_sum;            // sum of data size
+    ListNode *first;            // first node of the list
+    ListNode *last;             // last node of the list
+
+    size_t (*set_size)(List *, size_t);
+
+    bool (*push_front)(List *, const void *, size_t);
+    bool (*push_back)(List *, int, const void *, size_t);
+    bool (*push_at)(List *, int, const void *, size_t);
+
+    void *(*get_first)(List *, size_t *, bool);
+    void *(*get_last)(List *, size_t *, bool);
+    void *(*get_at)(List *, int, size_t *, bool);
+
+    void *(*pop_front)(List *, size_t *);
+    void *(*pop_back)(List *, size_t *);
+    void *(*pop_at)(List *, int index, size_t *);
+
+    bool (*remove_front)(List *);
+    bool (*remove_back)(List *list);
+    bool (*remove_at)(List *, int);
+
+    bool (*get_next)(List *, ListNode *, bool);
+    
+    size_t (*get_size)(List *);
+    size_t (*get_sizeSum)(List *);
+    void (*reverse)(List *);
+    void (*clear)(List *);
+
+    void *(*to_array)(List *, size_t);
+    void *(*to_string)(List*);
+    bool (*debug)(List *, FILE *);
+
+    void (*free)(List *);
+
 } List;
 
-List *List_create();
-void List_destroy(List *list);
-void List_clear(List *list);
-void List_clear_destroy(List *list);
+extern List *List_create();
+extern size_t List_setSize(List *list, size_t max);
 
-#define List_count(A) ((A)->count)
-#define List_first(A) ((A)->first != NULL ? (A)->first->value : NULL)
-#define List_last(A) ((A)->last != NULL ? (A)->last->value : NULL)
+extern bool List_pushFront(List *list, const void *value, size_t size);
+extern bool List_pushBack(List *list, const void *value, size_t size);
+extern bool List_pushAt(List *list, int index, const void *data, size_t size);
 
-void List_push(List *list, void *value);
-void *List_pop(List *list);
+extern void *List_getFirst(List *list, size_t *size, bool is_new_mem);
+extern void *List_getLast(List *list , size_t *size, bool is_new_mem);
+extern void *List_getAt(List *list, int index, size_t *size, bool is_new_mem);
 
-void List_unshift(List *list, void *value);
-void *List_shift(List *list);
+extern void *List_popFront(List *list, size_t *size);
+extern void *List_popBack(List *list, size_t *size);
+extern void *List_popAt(List *list, int index, size_t *size);
 
-void *List_remove(List *list, ListNode *node);
+extern bool List_removeFront(List *list);
+extern bool List_removeBack(List *list);
+extern bool List_removeAt(List *list, int index);
 
-#define LIST_FOREACH(L, S, M, V) \
-    ListNode *_node = NULL;\
-    ListNode *V = NULL;\
-    for (V = _node = L->S; _node != NULL; V = _node = _node->M)
+extern bool List_getNext(List *list, ListNode *node, bool is_new_mem);
 
+extern size_t List_size(List *list);
+extern size_t List_sizeSum(List *list);
+extern void List_reverse(List *list);
+extern void List_clear(List *list);
+
+extern void *List_toArray(List *list, size_t size);
+extern void *List_toString(List *list);
+extern bool List_debug(List *list, FILE *out);
+
+extern void List_free(List *list);
 
 #endif
