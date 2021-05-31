@@ -48,19 +48,19 @@ typedef struct BSTreeNode {
 typedef int (*BSTree_traverse_cb)(BSTreeNode *node);
 
 typedef struct BSTree {
-		int count;
-		BSTree_compare compare;
-		BSTreeNode *root;
+	int count;
+	BSTree_compare compare;
+	BSTreeNode *root;
 
-		void (*destroy)(struct BSTree *map);
-		int (*BSTree_set)(struct BSTree *map, void *key, void *data);
+	void (*destroy)(struct BSTree *map);
+	int (*BSTree_set)(struct BSTree *map, void *key, void *data);
 
-		int (*set)(struct BSTree *map, void *key, void *data);
-		void *(*BSTree_get)(struct BSTree *map, void *key);
+	int (*set)(struct BSTree *map, void *key, void *data);
+	void *(*BSTree_get)(struct BSTree *map, void *key);
 
-		int (*BSTree_traverse)(struct BSTree *map, BSTree_traverse_cb traverse_cb);
+	int (*BSTree_traverse)(struct BSTree *map, BSTree_traverse_cb traverse_cb);
 
-		void *(*BSTree_delete)(struct BSTree *map, void *key);
+	void *(*BSTree_delete)(struct BSTree *map, void *key);
 } BSTree;
 
 extern BSTree *BSTree_create(BSTree_compare compare);
