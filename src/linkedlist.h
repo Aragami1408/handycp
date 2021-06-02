@@ -24,6 +24,12 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include <stdint.h>
+
+enum {
+    LIST_THREADSAFE = (0x01)
+};
 
 typedef struct ListNode {
     struct ListNode *next;      // next node
@@ -33,46 +39,48 @@ typedef struct ListNode {
 } ListNode;
 
 typedef struct List {
+    void *mutex;
     size_t num;                 // number of elements
     size_t max;                 // max num of elems, set max to 0 for no limitation
     size_t size_sum;            // sum of data size
+
     ListNode *first;            // first node of the list
     ListNode *last;             // last node of the list
 
-    size_t (*set_size)(List *, size_t);
+    size_t (*set_size)(struct List *, size_t);
 
-    bool (*push_front)(List *, const void *, size_t);
-    bool (*push_back)(List *, int, const void *, size_t);
-    bool (*push_at)(List *, int, const void *, size_t);
+    bool (*push_front)(struct List *, const void *, size_t);
+    bool (*push_back)(struct List *, int, const void *, size_t);
+    bool (*push_at)(struct List *, int, const void *, size_t);
 
-    void *(*get_first)(List *, size_t *, bool);
-    void *(*get_last)(List *, size_t *, bool);
-    void *(*get_at)(List *, int, size_t *, bool);
+    void *(*get_first)(struct List *, size_t *, bool);
+    void *(*get_last)(struct List *, size_t *, bool);
+    void *(*get_at)(struct List *, int, size_t *, bool);
 
-    void *(*pop_front)(List *, size_t *);
-    void *(*pop_back)(List *, size_t *);
-    void *(*pop_at)(List *, int index, size_t *);
+    void *(*pop_front)(struct List *, size_t *);
+    void *(*pop_back)(struct List *, size_t *);
+    void *(*pop_at)(struct List *, int index, size_t *);
 
-    bool (*remove_front)(List *);
-    bool (*remove_back)(List *list);
-    bool (*remove_at)(List *, int);
+    bool (*remove_front)(struct List *);
+    bool (*remove_back)(struct List *list);
+    bool (*remove_at)(struct List *, int);
 
-    bool (*get_next)(List *, ListNode *, bool);
+    bool (*get_next)(struct List *, ListNode *, bool);
     
-    size_t (*get_size)(List *);
-    size_t (*get_sizeSum)(List *);
-    void (*reverse)(List *);
-    void (*clear)(List *);
+    size_t (*get_size)(struct List *);
+    size_t (*get_sizeSum)(struct List *);
+    void (*reverse)(struct List *);
+    void (*clear)(struct List *);
 
-    void *(*to_array)(List *, size_t);
-    void *(*to_string)(List*);
-    bool (*debug)(List *, FILE *);
+    void *(*to_array)(struct List *, size_t);
+    void *(*to_string)(struct List*);
+    bool (*debug)(struct List *, FILE *);
 
-    void (*free)(List *);
+    void (*free)(struct List *);
 
 } List;
 
-extern List *List_create();
+extern List *List_create(bool op);
 extern size_t List_setSize(List *list, size_t max);
 
 extern bool List_pushFront(List *list, const void *value, size_t size);
@@ -101,6 +109,9 @@ extern void List_clear(List *list);
 extern void *List_toArray(List *list, size_t size);
 extern void *List_toString(List *list);
 extern bool List_debug(List *list, FILE *out);
+
+extern void List_lock(List *);
+extern void List_unlock(List *);
 
 extern void List_free(List *list);
 

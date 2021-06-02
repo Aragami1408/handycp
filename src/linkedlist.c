@@ -21,4 +21,30 @@
 
 #include "linkedlist.h"
 #include "dbg.h"
+#include "mthreads.h"
 
+List *List_create(bool op) {
+    List *list = (List *) calloc(1, sizeof(List *));
+    CHECK_MEM(list, list_error);
+    
+    if (op & LIST_THREADSAFE) {
+        MTX_NEW(list->mutex, true);
+        CHECK_MEM(list->mutex, mtx_error);
+    }
+
+    list->set_size = List_setSize;
+
+    list->push_front = List_pushFront;
+    list->push_back = List_pushBack;
+    list->push_at = List_pushAt;
+
+
+list_error:
+    errno = ENOMEM;
+    return NULL;
+
+mtx_error:
+    errno = ENOMEM;
+    free(list);
+    return NULL;
+}
