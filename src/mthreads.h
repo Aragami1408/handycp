@@ -9,6 +9,7 @@
 
 #include <unistd.h>
 #include <pthread.h>
+#include <stdlib.h>
 
 typedef struct Mutex {
     pthread_mutex_t mutex;
@@ -24,7 +25,7 @@ typedef struct Mutex {
         if (r) {                                                                \
             pthread_mutexattr_settype(&_mtxattr, PTHREAD_MUTEX_RECURSIVE);      \
         }                                                                       \
-        int _ret = pthread_mutex_init(&(x->mutex), &_mtxattr);              \
+        int _ret = pthread_mutex_init(&(x->mutex), &_mtxattr);              	\
         pthread_mutexattr_destroy(&_mtxattr);                                   \
         if (_ret == 0) {                                                        \
             m = x;                                                              \
@@ -54,7 +55,7 @@ typedef struct Mutex {
         Mutex *x = (Mutex *)m;                                                                              \
         while(true) {                                                                                       \
             int _ret, i;                                                                                    \
-            for (i = 0, (_ret = pthread_mutex_trylock(&(x->mutex))) != 0 && i < MAX_MTX_LOCK_WAIT; i++) {   \
+            for (i = 0; (_ret = pthread_mutex_trylock(&(x->mutex))) != 0 && i < MAX_MTX_LOCK_WAIT; i++) {   \
                 if (i == 0) {                                                                               \
                     DEBUG("MTX: mutex is already locked - retrying");                                       \
                 }                                                                                           \
@@ -70,10 +71,10 @@ typedef struct Mutex {
 
 #define MTX_DESTROY(m)                                              \
     do {                                                            \
-        if (m == NULL) reak;                                        \
+        if (m == NULL) break;                                        \
         Mutex *x = (Mutex *)m;                                      \
         if (x->count != 0) DEBUG("MTX: mutex counter is not 0.");   \
-        int ret;                                                    \
+        int _ret;                                                    \
         while((_ret = pthread_mutex_destroy(&(x->mutex))) != 0) {   \
             DEBUG("MTX: force to unlock mutex. [%d]", _ret);        \
             MTX_LEAVE(x);                                           \
